@@ -1,0 +1,17 @@
+#lang sicp
+(define (sum term a next b)
+  (if (> a b)
+      0
+      (+ (term a) (sum term (next a) next b))))
+
+(define (cube x) (* x x x))
+
+(define (integral f a b n)
+  (define h (/ (- b a) n))
+  (define (y_k k) (f (+ a (* k h))))
+  (define (integral-term k)
+    (cond ((or (= k 0) (= k n)) (y_k k))
+          ((even? k) (* 2 (y_k k)))
+          (else (* 4 (y_k k)))))
+  (define (inc x) (+ x 1))
+    (/ (* (sum integral-term 0 inc n) h) 3))
