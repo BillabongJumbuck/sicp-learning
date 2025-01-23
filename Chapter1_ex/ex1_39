@@ -1,0 +1,9 @@
+#lang sicp
+(define (tan-cf x k)
+  (define (helper i)
+    (let ((ni (if (= i 1 ) x (* x x)))
+          (di (- (* 2 i ) 1)))
+      (if (> i k)
+          0
+          (/ ni (- di (helper (+ i 1)))))))
+  (helper 1))
