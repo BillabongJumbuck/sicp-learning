@@ -1,0 +1,8 @@
+#lang sicp
+(define (reverse a)
+  (define (iter x y)
+    (if (null? x)
+        y
+        (iter (cdr x)
+              (cons (car x) y))))
+  (iter a '() ))
